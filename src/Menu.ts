@@ -1,7 +1,13 @@
 import readlinesync = require("readline-sync");
+import { Loja } from "./model/Loja";
+import { LojaController } from "./controller/LojaController";
 
 export function main() {
     let opcao_cliente: number;
+
+    let lojaNicolas: Loja = new Loja("Smartphones e Notebooks");
+    let lojaController: LojaController = new LojaController();
+    
 
     while(true){
         console.log("*****************************************************");
@@ -31,27 +37,40 @@ export function main() {
 
         switch(opcao_cliente){
             case 1:
-                console.log("Cadastrar notebook....");
+                let nomeNotebook: string = readlinesync.question("Digite o nome do notebook: ");
+                let valorNotebook: number = readlinesync.questionFloat("Digite o valor do notebook: ");
+
+                lojaController.cadastrarNotebook(nomeNotebook, valorNotebook, lojaNicolas);
                 break;
             
             case 2:
-                console.log("Cadastrar celular....");
+                let nomeCelular: string = readlinesync.question("Digite o nome do notebook: ");
+                let valorCelular: number = readlinesync.questionFloat("Digite o valor do notebook: ");
+
+                lojaController.cadastrarCelular(nomeCelular, valorCelular, lojaNicolas);
                 break;
 
             case 3:
-                console.log("Listar produtos....");
+                lojaController.listarProdutos(lojaNicolas);
                 break;
 
             case 4:
-                console.log("Buscar produto....");
+                let nomePesquisar: string = readlinesync.question("Digite o nome do produto: ")
+
+                console.log(lojaController.buscarProduto(nomePesquisar, lojaNicolas));
                 break;
 
             case 5:
-                console.log("Atualizar produto....");
+                let nomeAtualizar: string = readlinesync.question("Digite o nome do produto: ")
+                let valorNovo: number = readlinesync.questionFloat("Digite o novo valor do produto: ") 
+
+                lojaController.atualizarProduto(nomeAtualizar, valorNovo, lojaNicolas);
                 break;
 
             case 6:
-                console.log("Excluir produto....");
+                let nomeExcluir: string = readlinesync.question("Digite o nome do produto para excluir: ");
+
+                lojaController.excluirProduto(nomeExcluir, lojaNicolas);
                 break;
 
             
