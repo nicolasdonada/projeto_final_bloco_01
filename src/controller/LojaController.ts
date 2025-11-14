@@ -3,6 +3,8 @@ import { Celular } from "../model/produto/Celular";
 import { Notebook } from "../model/produto/Notebook";
 import { Produto } from "../model/produto/Produto";
 import { LojaRepository } from "../repository/LojaRepository";
+import { ProdutoNaoEncontradoError } from "../exceptions/ProdutoNaoEncontradoError";
+import { ValorInvalidoError } from "../exceptions/ValorInvalidoError";
 
 export class LojaController implements LojaRepository {
 
@@ -24,16 +26,18 @@ export class LojaController implements LojaRepository {
 
     atualizarProduto(nome: string, valor:number, loja: Loja): void {
         try {
-            const sucesso = loja.atualizarProduto(nome, valor);
-
-            if (sucesso) {
-                console.log(`Produto "${nome}" atualizado para R$ ${valor}.`);
-            } else {
-                console.log(`Produto "${nome}" não encontrado.`);
-            }
-
+            loja.atualizarProduto(nome, valor);
+            console.log(`Produto "${nome}" atualizado para R$ ${valor}`);
         } catch (erro) {
-            console.error("Erro ao atualizar produto:", erro);
+            if (erro instanceof ProdutoNaoEncontradoError) {
+                console.log(erro.message);
+            } 
+            else if (erro instanceof ValorInvalidoError) {
+                console.log(erro.message);
+            } 
+            else {
+                console.log("Erro inesperado:", erro);
+            }
         }
     }  
 

@@ -1,5 +1,6 @@
-import { LojaRepository } from "../repository/LojaRepository";
 import { Produto } from "./produto/Produto";
+import { ProdutoNaoEncontradoError } from "../exceptions/ProdutoNaoEncontradoError";
+import { ValorInvalidoError } from "../exceptions/ValorInvalidoError";
 
 export class Loja{
 
@@ -32,15 +33,18 @@ export class Loja{
         }
     }
 
-    atualizarProduto(nome: string, valor: number): boolean {
+    atualizarProduto(nome: string, valor: number): void {
         const produto = this._listaProdutos.find(p => p.nome === nome);
 
-        if (produto) {
-            produto.valor = valor;
-            return true;   
+        if (!produto) {
+            throw new ProdutoNaoEncontradoError(nome);
         }
 
-        return false;  
+        if (valor <= 0) {
+            throw new ValorInvalidoError();
+        }
+
+        produto.valor = valor;
     }
 
     excluirProduto(nome: string): boolean {
