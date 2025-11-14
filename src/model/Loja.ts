@@ -1,4 +1,7 @@
-export class Loja{
+import { LojaRepository } from "../repository/LojaRepository";
+import { Produto } from "./produto/Produto";
+
+export class Loja implements LojaRepository{
 
     private _nome: string;
     private _listaProdutos: Produto;
