@@ -1,7 +1,13 @@
 import readlinesync = require("readline-sync");
+import { Loja } from "./model/Loja";
+import { LojaController } from "./controller/LojaController";
 
 export function main() {
     let opcao_cliente: number;
+
+    let lojaNicolas: Loja = new Loja("Smartphones e Notebooks");
+    let lojaController: LojaController = new LojaController();
+    
 
     while(true){
         console.log("*****************************************************");
@@ -10,18 +16,19 @@ export function main() {
         console.log("                                                     ");
         console.log("*****************************************************");
         console.log("                                                     ");
-        console.log("            1 - Cadastrar produto                    ");
-        console.log("            2 - Listar todos produtos                ");
-        console.log("            3 - Buscar produto                       ");
-        console.log("            4 - Atualizar produto                    ");
-        console.log("            5 - Excluir produto                      ");
-        console.log("            6 - Sair                                 ");
+        console.log("            1 - Cadastrar notebook                   ");
+        console.log("            2 - Cadastrar celular                    ");
+        console.log("            3 - Listar todos produtos                ");
+        console.log("            4 - Buscar produto                       ");
+        console.log("            5 - Atualizar produto                    ");
+        console.log("            6 - Excluir produto                      ");
+        console.log("            7 - Sair                                 ");
         console.log("                                                     ");
         console.log("*****************************************************");
 
         opcao_cliente = readlinesync.questionInt("Entre com a opcao desejada: ");
 
-        if(opcao_cliente == 6){
+        if(opcao_cliente == 7){
             console.log("Volte sempre!");
 
             return;
@@ -30,23 +37,40 @@ export function main() {
 
         switch(opcao_cliente){
             case 1:
-                console.log("Cadastrar produto....");
+                let nomeNotebook: string = readlinesync.question("Digite o nome do notebook: ");
+                let valorNotebook: number = readlinesync.questionFloat("Digite o valor do notebook: ");
+
+                lojaController.cadastrarNotebook(nomeNotebook, valorNotebook, lojaNicolas);
                 break;
             
             case 2:
-                console.log("Listar produtos....");
+                let nomeCelular: string = readlinesync.question("Digite o nome do notebook: ");
+                let valorCelular: number = readlinesync.questionFloat("Digite o valor do notebook: ");
+
+                lojaController.cadastrarCelular(nomeCelular, valorCelular, lojaNicolas);
                 break;
 
             case 3:
-                console.log("Buscar produto....");
+                lojaController.listarProdutos(lojaNicolas);
                 break;
 
             case 4:
-                console.log("Atualizar produto....");
+                let nomePesquisar: string = readlinesync.question("Digite o nome do produto: ")
+
+                console.log(lojaController.buscarProduto(nomePesquisar, lojaNicolas));
                 break;
 
             case 5:
-                console.log("Excluir produto....");
+                let nomeAtualizar: string = readlinesync.question("Digite o nome do produto: ")
+                let valorNovo: number = readlinesync.questionFloat("Digite o novo valor do produto: ") 
+
+                lojaController.atualizarProduto(nomeAtualizar, valorNovo, lojaNicolas);
+                break;
+
+            case 6:
+                let nomeExcluir: string = readlinesync.question("Digite o nome do produto para excluir: ");
+
+                lojaController.excluirProduto(nomeExcluir, lojaNicolas);
                 break;
 
             

@@ -4,10 +4,11 @@ import { Produto } from "../model/produto/Produto";
 export interface LojaRepository {
 
     // CRUD
-    cadastrarProduto(nome: string, valor: number): void;
-    listarProdutos(): void;
-    buscarProduto(nome: string): Produto;
-    atualizarProduto(nome: string): void;
-    excluirProduto(nome: string): void;
-    
+    cadastrarNotebook(nome: string, valor: number, loja: Loja): void;
+    cadastrarCelular(nome: string, valor: number, loja: Loja): void;
+    listarProdutos(loja: Loja): void;
+    buscarProduto(nome: string, loja: Loja): Produto | undefined;
+    atualizarProduto(nome: string, valor: number, loja: Loja): void;
+    excluirProduto(nome: string, loja: Loja): void;
+
 }
