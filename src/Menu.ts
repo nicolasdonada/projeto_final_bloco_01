@@ -10,18 +10,19 @@ export function main() {
         console.log("                                                     ");
         console.log("*****************************************************");
         console.log("                                                     ");
-        console.log("            1 - Cadastrar produto                    ");
-        console.log("            2 - Listar todos produtos                ");
-        console.log("            3 - Buscar produto                       ");
-        console.log("            4 - Atualizar produto                    ");
-        console.log("            5 - Excluir produto                      ");
-        console.log("            6 - Sair                                 ");
+        console.log("            1 - Cadastrar notebook                   ");
+        console.log("            2 - Cadastrar celular                    ");
+        console.log("            3 - Listar todos produtos                ");
+        console.log("            4 - Buscar produto                       ");
+        console.log("            5 - Atualizar produto                    ");
+        console.log("            6 - Excluir produto                      ");
+        console.log("            7 - Sair                                 ");
         console.log("                                                     ");
         console.log("*****************************************************");
 
         opcao_cliente = readlinesync.questionInt("Entre com a opcao desejada: ");
 
-        if(opcao_cliente == 6){
+        if(opcao_cliente == 7){
             console.log("Volte sempre!");
 
             return;
@@ -30,22 +31,26 @@ export function main() {
 
         switch(opcao_cliente){
             case 1:
-                console.log("Cadastrar produto....");
+                console.log("Cadastrar notebook....");
                 break;
             
             case 2:
-                console.log("Listar produtos....");
+                console.log("Cadastrar celular....");
                 break;
 
             case 3:
-                console.log("Buscar produto....");
+                console.log("Listar produtos....");
                 break;
 
             case 4:
-                console.log("Atualizar produto....");
+                console.log("Buscar produto....");
                 break;
 
             case 5:
+                console.log("Atualizar produto....");
+                break;
+
+            case 6:
                 console.log("Excluir produto....");
                 break;
 

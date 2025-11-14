@@ -14,4 +14,8 @@ export abstract class Produto {
     public get valor(){
         return this._valor;
     }
+
+    public set valor(valor: number){
+        this._valor = valor;
+    }
 }
