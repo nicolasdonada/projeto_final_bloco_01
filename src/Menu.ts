@@ -3,7 +3,7 @@ import { Loja } from "./model/Loja";
 import { LojaController } from "./controller/LojaController";
 
 export function main() {
-    let opcao_cliente: number;
+    let opcaoCliente: number;
 
     let lojaNicolas: Loja = new Loja("Smartphones e Notebooks");
     let lojaController: LojaController = new LojaController();
@@ -26,16 +26,16 @@ export function main() {
         console.log("                                                     ");
         console.log("*****************************************************");
 
-        opcao_cliente = readlinesync.questionInt("Entre com a opcao desejada: ");
+        opcaoCliente = readlinesync.questionInt("Entre com a opcao desejada: ");
 
-        if(opcao_cliente == 7){
+        if(opcaoCliente == 7){
             console.log("Volte sempre!");
 
             return;
         }
 
 
-        switch(opcao_cliente){
+        switch(opcaoCliente){
             case 1:
                 let nomeNotebook: string = readlinesync.question("Digite o nome do notebook: ");
                 let valorNotebook: number = readlinesync.questionFloat("Digite o valor do notebook: ");
